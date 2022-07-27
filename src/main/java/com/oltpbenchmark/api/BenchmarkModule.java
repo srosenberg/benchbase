@@ -219,7 +219,7 @@ public abstract class BenchmarkModule {
      * objects (e.g., table, indexes, etc) needed for this benchmark
      */
     public final void createDatabase(DatabaseType dbType, Connection conn) throws SQLException, IOException {
-
+        
             ScriptRunner runner = new ScriptRunner(conn, true, true);
 
             if (workConf.getDDLPath() != null) {

@@ -47,13 +47,13 @@ public class Delivery extends TPCCProcedure {
             "   AND NO_W_ID = ?");
 
     public SQLStmt delivGetCustIdSQL = new SQLStmt(
-            "SELECT O_C_ID FROM " + TPCCConstants.TABLENAME_OPENORDER +
+            "SELECT O_C_ID FROM " + "\"" + TPCCConstants.TABLENAME_OPENORDER + "\"" +
             " WHERE O_ID = ? " +
             "   AND O_D_ID = ? " +
             "   AND O_W_ID = ?");
 
     public SQLStmt delivUpdateCarrierIdSQL = new SQLStmt(
-            "UPDATE " + TPCCConstants.TABLENAME_OPENORDER +
+            "UPDATE " + "\"" + TPCCConstants.TABLENAME_OPENORDER + "\"" +
             "   SET O_CARRIER_ID = ? " +
             " WHERE O_ID = ? " +
             "   AND O_D_ID = ?" +

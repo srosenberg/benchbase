@@ -446,7 +446,9 @@ public abstract class Worker<T extends BenchmarkModule> implements Runnable {
         } catch (SQLException ex) {
             String msg = String.format("Unexpected SQLException in '%s' when executing '%s' on [%s]", this, transactionType, databaseType.name());
 
-            throw new RuntimeException(msg, ex);
+            //throw new RuntimeException(msg, ex);
+            //NB. use --tolerate-errors optionally
+            LOG.error(msg, ex);
         }
 
     }

@@ -26,7 +26,9 @@ import org.slf4j.LoggerFactory;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class AbstractTestLoader<T extends BenchmarkModule> extends AbstractTestCase<T> {
 
@@ -61,7 +63,15 @@ public abstract class AbstractTestLoader<T extends BenchmarkModule> extends Abst
 
         for (Table table : this.catalog.getTables()) {
             String tableName = table.getName();
-            Table catalog_tbl = this.catalog.getTable(tableName);
+            if (tableName.contains("order")) {
+                System.out.println("getting " + tableName);
+                System.out.println(catalog.getTables().stream()
+                    .map(Table::getName)
+                    .collect(Collectors.joining(", ")));
+                System.out.println(this.catalog.getTable(tableName));
+                System.out.println(this.catalog.getTable("order"));
+            }
+            Table catalog_tbl = this.catalog.getTable(tableName.replace("\"", ""));
 
             String sql = SQLUtil.getCountSQL(this.workConf.getDatabaseType(), catalog_tbl);
 

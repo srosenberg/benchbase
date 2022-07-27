@@ -62,7 +62,7 @@ public class NewOrder extends TPCCProcedure {
             "   AND D_ID = ?");
 
     public final SQLStmt stmtInsertOOrderSQL = new SQLStmt(
-            "INSERT INTO " + TPCCConstants.TABLENAME_OPENORDER +
+            "INSERT INTO " + "\"" + TPCCConstants.TABLENAME_OPENORDER + "\"" +
             " (O_ID, O_D_ID, O_W_ID, O_C_ID, O_ENTRY_D, O_OL_CNT, O_ALL_LOCAL)" +
             " VALUES (?, ?, ?, ?, ?, ?, ?)");
 

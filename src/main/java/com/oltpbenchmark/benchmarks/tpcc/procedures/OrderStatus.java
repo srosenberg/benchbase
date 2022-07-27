@@ -40,7 +40,7 @@ public class OrderStatus extends TPCCProcedure {
 
     public SQLStmt ordStatGetNewestOrdSQL = new SQLStmt(
             "SELECT O_ID, O_CARRIER_ID, O_ENTRY_D " +
-            "  FROM " + TPCCConstants.TABLENAME_OPENORDER +
+            "  FROM " + "\"" + TPCCConstants.TABLENAME_OPENORDER + "\"" +
             " WHERE O_W_ID = ? " +
             "   AND O_D_ID = ? " +
             "   AND O_C_ID = ? " +

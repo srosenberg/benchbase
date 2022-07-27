@@ -361,7 +361,7 @@ public abstract class SQLUtil {
             sb.append("INSERT");
         }
         sb.append(" INTO ")
-                .append(escape_names ? catalog_tbl.getEscapedName() : catalog_tbl.getName());
+                .append(escape_names ? catalog_tbl.getEscapedName() : (!catalog_tbl.getName().equals("order")) ? catalog_tbl.getName() : "\"" + catalog_tbl.getName() + "\"");
 
         StringBuilder values = new StringBuilder();
         boolean first;

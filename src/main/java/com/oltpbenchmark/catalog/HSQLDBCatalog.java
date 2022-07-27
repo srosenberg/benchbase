@@ -229,7 +229,7 @@ public class HSQLDBCatalog implements AbstractCatalog {
         Matcher m = p.matcher(ddlContents);
         while (m.find()) {
             String tableName = m.group(1).trim();
-            originalTableNames.put(tableName.toUpperCase(), tableName);
+            originalTableNames.put(tableName.toUpperCase().replace("\"", ""), tableName);
         }
         return originalTableNames;
     }

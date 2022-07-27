@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS history CASCADE;
 DROP TABLE IF EXISTS new_order CASCADE;
 DROP TABLE IF EXISTS order_line CASCADE;
-DROP TABLE IF EXISTS oorder CASCADE;
+DROP TABLE IF EXISTS order CASCADE;
 DROP TABLE IF EXISTS customer CASCADE;
 DROP TABLE IF EXISTS district CASCADE;
 DROP TABLE IF EXISTS stock CASCADE;
@@ -108,7 +108,7 @@ CREATE TABLE history (
     FOREIGN KEY (h_w_id, h_d_id) REFERENCES district (d_w_id, d_id) ON DELETE CASCADE
 );
 
-CREATE TABLE oorder (
+CREATE TABLE "order" (
     o_w_id       int       NOT NULL,
     o_d_id       int       NOT NULL,
     o_id         int       NOT NULL,
@@ -126,7 +126,7 @@ CREATE TABLE new_order (
     no_w_id int NOT NULL,
     no_d_id int NOT NULL,
     no_o_id int NOT NULL,
-    FOREIGN KEY (no_w_id, no_d_id, no_o_id) REFERENCES oorder (o_w_id, o_d_id, o_id) ON DELETE CASCADE,
+    FOREIGN KEY (no_w_id, no_d_id, no_o_id) REFERENCES order (o_w_id, o_d_id, o_id) ON DELETE CASCADE,
     PRIMARY KEY (no_w_id, no_d_id, no_o_id)
 );
 
@@ -141,7 +141,7 @@ CREATE TABLE order_line (
     ol_supply_w_id int           NOT NULL,
     ol_quantity    decimal(6, 2) NOT NULL,
     ol_dist_info   char(24)      NOT NULL,
-    FOREIGN KEY (ol_w_id, ol_d_id, ol_o_id) REFERENCES oorder (o_w_id, o_d_id, o_id) ON DELETE CASCADE,
+    FOREIGN KEY (ol_w_id, ol_d_id, ol_o_id) REFERENCES order (o_w_id, o_d_id, o_id) ON DELETE CASCADE,
     FOREIGN KEY (ol_supply_w_id, ol_i_id) REFERENCES stock (s_w_id, s_i_id) ON DELETE CASCADE,
     PRIMARY KEY (ol_w_id, ol_d_id, ol_o_id DESC, ol_number)
 );
